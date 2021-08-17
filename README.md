@@ -1,3 +1,5 @@
+# This repo is intended to serve as a vagrant build for a Wazuh server host. 
+
 # Ansible Environment: 
 
 Multi-Machine Vagrant Environments:
