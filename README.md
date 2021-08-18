@@ -1,14 +1,10 @@
-# This repo is intended to serve as a vagrant build for a Wazuh server host. 
+# This repo is intended to serve as a vagrant build for a Wazuh server host and eventually be a multi-vm envirnment w/ server and agent VM's. 
 
-# Ansible Environment: 
 
 Multi-Machine Vagrant Environments:
-This Vagrantfile will create 3 Ubuntu 20.04 VM's to simulate Ansible control machine and 2 target hosts. 
+This Vagrantfile will create 1 Ubuntu 20.04 VM with Wazuh server installed.  
 
-* Host1 - No GUI
-* Host2 - No GUI
-* ansible-host - No GUI, ansible core installed
-
+* Host1 - wazuh.server.com (192.168.29.2)
 
 ## Requirements:
 
