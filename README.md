@@ -1,8 +1,6 @@
-# This repo is intended to serve as a vagrant build for a Wazuh server host and eventually be a multi-vm envirnment w/ server and agent VM's. 
+# What is this?
 
-
-Multi-Machine Vagrant Environments:
-This Vagrantfile will create 1 Ubuntu 20.04 VM with Wazuh server installed.  
+This Vagrantfile will create 1 Ubuntu 20.04 VM with Wazuh server installed. Future plans are to add multiple agent VM's to demonstrate a small "observability" lab setup.
 
 * Host1 - wazuh.server.com (192.168.29.2)
 
