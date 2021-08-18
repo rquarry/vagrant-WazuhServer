@@ -1,29 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+$script = "curl -so ~/unattended-installation.sh https://packages.wazuh.com/resources/4.1/open-distro/unattended-installation/unattended-installation.sh && bash ~/unattended-installation.sh"
+
 Vagrant.configure("2") do |config|
 # Define VMs with static private IP addresses, vcpu, memory and vagrant-box.
   boxes = [
     {
-      :name => "web1.demo.com",
+      :name => "wazuh.server.com",
       :box => "ubuntu/focal64",
-      :ram => 1024,
-      :vcpu => 1,
+      :ram => 4096,
+      :vcpu => 2,
       :ip => "192.168.29.2"
-    },
-    {
-      :name => "web2.demo.com",
-      :box => "ubuntu/focal64",
-      :ram => 1024,
-      :vcpu => 1,
-      :ip => "192.168.29.3"
-    },
-    {
-      :name => "ansible-host",
-      :box => "ubuntu/focal64",
-      :ram => 8048,
-      :vcpu => 1,
-      :ip => "192.168.29.4"
     }
   ]
 
@@ -54,10 +42,10 @@ Vagrant.configure("2") do |config|
         file.destination    = '/home/vagrant/inventory-test.yaml'
        end
       config.vm.provision :shell, path: "bootstrap-node.sh"
-      config.vm.provision :ansible do |ansible|
-        ansible.verbose = "v"
-        ansible.playbook = "playbook.yml"
+      config.vm.provision :shell, inline: $script
+#      config.vm.provision :ansible do |ansible|
+#        ansible.verbose = "v"
+#        ansible.playbook = "playbook.yml"
       end
    end
   end
-end
