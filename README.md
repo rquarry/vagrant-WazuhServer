@@ -33,24 +33,23 @@ Restart your machine and try running vagrant again.
 
 
 ## Other files included:
-- inventory
-- bootstrap-node.sh
-- playbook.yaml
-- inventory-test.yaml
+- bootstrap-node.sh - Sets up the hosts file on each VM with IP entries
+- playbook.yaml - Ansible features (not currently used)
+- inventory-test.yaml - Ansible features (not currently used)
 
 ## Connecting the dots:
-Before you run vagrant up, make sure that you updated the Vagrantfile to your desired configuration. 
+Before you run vagrant up, make sure that you updated the Vagrantfile to your desired configuration.
 
-Once you are done: 
+Once you are done:
 - _vagrant up_
   Wait for about 6 minutes to finish the build. Once done. You can try to ssh to your ansible-host vm. You can verify this by using "_vagrant status_"
 
-- _vagrant ssh ansible-host_ 
+- _vagrant ssh ansible-host_
   once you are login to your ansible-host vm, you can now verify if the other vm are reachable. The command to use is: "_ansible-playbook -i inventory playbook/ping.yml_"
-
-## Ansible Testing
 
 ## The Vagrantfile performs the following:
 - Defines the VM's with static private IP addresses, vcpu, memory and vagrant-box
-- Calls "bootstrap-node.sh" which puts IP/hostname information into /etc/hosts. This sets the host specific behavior of the playbook. 
-- Calls "playbook.yml" to config each box.
+- Calls "bootstrap-node.sh" which puts IP/hostname information into /etc/hosts. This sets the host specific behavior of the playbook.
+- Calls "playbook.yml" to config each box. (currently unused)
+- Runs the Wazuh server "all-in-one" unattended install [script](https://documentation.wazuh.com/current/installation-guide/open-distro/all-in-one-deployment/unattended-installation.html)
+- Outputs the results of the Wazuh server build script, including credential information to the user `vagrant` home directory

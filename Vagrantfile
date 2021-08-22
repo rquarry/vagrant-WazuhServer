@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$script = "curl -so ~/unattended-installation.sh https://packages.wazuh.com/resources/4.1/open-distro/unattended-installation/unattended-installation.sh && bash ~/unattended-installation.sh"
+$script = "curl -so ~/unattended-installation.sh https://packages.wazuh.com/resources/4.1/open-distro/unattended-installation/unattended-installation.sh && bash ~/unattended-installation.sh | tee creds.txt"
 
 Vagrant.configure("2") do |config|
 # Define VMs with static private IP addresses, vcpu, memory and vagrant-box.
@@ -37,10 +37,11 @@ Vagrant.configure("2") do |config|
          file.source     = './keys/vagrant'
          file.destination    = '/tmp/vagrant'
         end
-      config.vm.provision :file do |file|
-        file.source     = './inventory-test.yaml'
-        file.destination    = '/home/vagrant/inventory-test.yaml'
-       end
+# Don't run ansible stuff from the forked repo
+#      config.vm.provision :file do |file|
+#        file.source     = './inventory-test.yaml'
+#        file.destination    = '/home/vagrant/inventory-test.yaml'
+#       end
       config.vm.provision :shell, path: "bootstrap-node.sh"
       config.vm.provision :shell, inline: $script
 #      config.vm.provision :ansible do |ansible|
